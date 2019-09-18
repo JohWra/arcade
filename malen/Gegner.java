@@ -13,20 +13,25 @@ class Gegner
 	int d=0; //Richtung
 	boolean m = false; //Bewegungsueberpruefung
 	char k; //v=vorwärts, z=vor&zurück, r=rechtwinklig
+	boolean destroy = false; 
 	
-	void initial(int xp, int yp, int ri, char art)
+	void initial(int xp, int yp, int richtung, char art)
 	{
 		k = art;
 		x = xp;
 		y = yp;
-		d = ri;
-		Timer timer1 = new Timer();
+		d = richtung;
+		final Timer timer1 = new Timer();
 		timer1.schedule(
 			new TimerTask() 
 			{
 				public void run() 
 				{
 					vorwaerts();
+					if(destroy) {
+						timer1.cancel();
+						Bloecke.zeile[y][x]=0;
+					}
 				}
 			}, 100, 120);
 	}
@@ -88,52 +93,52 @@ class Gegner
 	
 	void vorwaerts()
 	{
-		int xd=0;
+		int xd=0; //neue Position
 		int yd=0;
-		if (d==0)
+		if (d==0) //wenn Richtung 0
 		{
 			xd = x;
-			yd = y-1;
+			yd = y-1; //neue Position in y Richtung (oben)
 		}
 		else if (d==1)
 		{
-			xd = x+1;
+			xd = x+1; //(rechts)
 			yd = y;
 		}
 		else if (d==2)
 		{
 			xd = x;
-			yd = y+1;
+			yd = y+1;//(unten)
 		}
 		else if (d==3)
 		{
-			xd = x-1;
+			xd = x-1;//(links)
 			yd = y;
 		}
 		
-		if (Bloecke.zeile[yd][xd]==0)
+		if (Bloecke.zeile[yd][xd]==0) //neue Position leer?
 		{
-			if (xd == Position.x && yd == Position.y)
+			if (xd == Position.x && yd == Position.y) //wenn Spieler an neuer Position (Position == Spieler)
 			{ 
-				if (m)
+				if (m) //wenn Gegner sich bewegt
 				{
-					Position.x = 1;
+					Position.x = 1;//Ruecksetzung des Spielers
 					Position.y = 1;
-					Bloecke.zeile[y][x]=0;
-					x = xd;
+					Bloecke.zeile[y][x]=0;//alte Position loeschen
+					x = xd;//weiterbewegen
 					y = yd;
-				} else {abbiegen();}
-			} else {
-				Bloecke.zeile[y][x]=0;
-				x = xd;
+				} else {abbiegen();}//wenn Gegner sich nicht bewegt abbiegen
+			} else { //wenn Spieler nicht an neuer Position
+				Bloecke.zeile[y][x]=0;//alte Position loeschen
+				x = xd;//weiterbewegen
 				y = yd;
-				m = true;
+				m = true;//bewegt sich
 			}
-		} else {
-			m = false;
+		} else {//neue Position ist nicht frei
+			m = false;//bewegt sich nicht
 			abbiegen();
 		}
-		Bloecke.zeile[y][x]=9; //für Kollisionserkennung
+		Bloecke.zeile[y][x]='9'; //für Kollisionserkennung
 	}
 	
 	private void abbiegen()
@@ -145,5 +150,9 @@ class Gegner
 			if (d<2) {d += 2;}
 			else {d -= 2;}
 		}
+	}
+
+	public void del() {
+		destroy = true;
 	}
 }

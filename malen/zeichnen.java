@@ -12,6 +12,7 @@ public class zeichnen
 extends Frame
 {
 	public static LinkedList<Gegner>gegnerListe;
+	static Creator c;
 	
 	public static void main(String[] args)
 	{
@@ -54,10 +55,22 @@ extends Frame
 				} else if (Bloecke.zeile[i][j]=='S') {
 					Position.x=j;
 					Position.y=i;
+				} else if (Bloecke.zeile[i][j]=='C') {
+					c = new Creator();
+					c.x=j;
+					c.y=i;
 				}
 			}
 		}
 	}
+	
+	public static void alleGegnerLoeschen() {
+		for(Gegner loeschG:gegnerListe) {
+			loeschG.del();		
+		}
+	}
+	
+	
 	
 	public zeichnen() 
 	{
@@ -124,6 +137,7 @@ extends Frame
             Position.rsZeichnen(g2d);
             Bloecke.erstellen(g2d);
             hintergrund(g2d);
+            c.rsZeichnen(g2d);
             for (Gegner gegner: gegnerListe)
             {
             	gegner.gzeichnen(g);
