@@ -56,37 +56,39 @@ public class Creator {
 			create(x, y, c);
 		} else if (e.getKeyCode() == KeyEvent.VK_R) {
 			Gegner geg = new Gegner();
-			geg.initial(x, y, 0, 'r');
+			geg.initial(x, y, 0, 'r', false);
 			zeichnen.gegnerListe.add(geg);
 		} else if (e.getKeyCode() == KeyEvent.VK_T) {
 			Gegner geg = new Gegner();
-			geg.initial(x, y, 0, 'z');
+			geg.initial(x, y, 0, 'z', false);
 			zeichnen.gegnerListe.add(geg);
 		} else if (e.getKeyCode() == KeyEvent.VK_E) {
 			Gegner geg = new Gegner();
-			geg.initial(x, y, 1, 'z');
+			geg.initial(x, y, 1, 'z', false);
 			zeichnen.gegnerListe.add(geg);
 		} else if (e.getKeyCode() == KeyEvent.VK_U) {
 			Gegner geg = new Gegner();
-			geg.initial(x, y, 0, 'v');
+			geg.initial(x, y, 0, 'v', false);
 			zeichnen.gegnerListe.add(geg);
 		} else if (e.getKeyCode() == KeyEvent.VK_K) {
 			Gegner geg = new Gegner();
-			geg.initial(x, y, 1, 'v');
+			geg.initial(x, y, 1, 'v', false);
 			zeichnen.gegnerListe.add(geg);
 		} else if (e.getKeyCode() == KeyEvent.VK_J) {
 			Gegner geg = new Gegner();
-			geg.initial(x, y, 2, 'v');
+			geg.initial(x, y, 2, 'v', false);
 			zeichnen.gegnerListe.add(geg);
 		} else if (e.getKeyCode() == KeyEvent.VK_H) {
 			Gegner geg = new Gegner();
-			geg.initial(x, y, 3, 'v');
+			geg.initial(x, y, 3, 'v', false);
 			zeichnen.gegnerListe.add(geg);
 		} else if (e.getKeyCode() == KeyEvent.VK_Q) {
 			zeichnen.alleGegnerLoeschen();
 			zeichnen.gegnerListe = new LinkedList<Gegner>();
 		} else if (e.getKeyCode() == KeyEvent.VK_X) {
 			zeichnen.alleGegnerStarten();
+		} else if (e.getKeyCode() == KeyEvent.VK_Z) {
+			zeichnen.alleGegnerStoppen();
 		}
 	}
 }

@@ -26,31 +26,31 @@ extends Frame
 			{
 				if (Bloecke.zeile[i][j]=='r') {
 					Gegner geg = new Gegner();
-					geg.initial(j, i, 0, 'r');
+					geg.initial(j, i, 0, 'r', true);
 					gegnerListe.add(geg);
 				} else if (Bloecke.zeile[i][j]=='x') {
 					Gegner geg = new Gegner();
-					geg.initial(j, i, 1, 'z');
+					geg.initial(j, i, 1, 'z', true);
 					gegnerListe.add(geg);
 				} else if (Bloecke.zeile[i][j]=='z') {
 					Gegner geg = new Gegner();
-					geg.initial(j, i, 0, 'z');
+					geg.initial(j, i, 0, 'z', true);
 					gegnerListe.add(geg);
 				} else if (Bloecke.zeile[i][j]=='s') {
 					Gegner geg = new Gegner();
-					geg.initial(j, i, 2, 'v');
+					geg.initial(j, i, 2, 'v', true);
 					gegnerListe.add(geg);
 				} else if (Bloecke.zeile[i][j]=='t') {
 					Gegner geg = new Gegner();
-					geg.initial(j, i, 3, 'v');
+					geg.initial(j, i, 3, 'v', true);
 					gegnerListe.add(geg);
 				} else if (Bloecke.zeile[i][j]=='u') {
 					Gegner geg = new Gegner();
-					geg.initial(j, i, 0, 'v');
+					geg.initial(j, i, 0, 'v', true);
 					gegnerListe.add(geg);
 				} else if (Bloecke.zeile[i][j]=='v') {
 					Gegner geg = new Gegner();
-					geg.initial(j, i, 1, 'v');
+					geg.initial(j, i, 1, 'v', true);
 					gegnerListe.add(geg);
 				} else if (Bloecke.zeile[i][j]=='S') {
 					Position.x=j;
@@ -74,6 +74,11 @@ extends Frame
 		}
 	}
 	
+	public static void alleGegnerStoppen() {
+		for(Gegner loeschG:gegnerListe) {
+			loeschG.destroy = true;		
+		}
+	}
 
 	public static void alleGegnerStarten() {
 		for(Gegner startG:gegnerListe) {

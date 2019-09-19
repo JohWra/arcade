@@ -14,12 +14,14 @@ class Gegner {
 	boolean destroy = true;
 	boolean delete = false;
 
-	void initial(int xp, int yp, int richtung, char art) {
+	void initial(int xp, int yp, int richtung, char art, boolean move) {
 		k = art;
 		x = xp;
 		y = yp;
 		d = richtung;
-		start();
+		if(move) {
+			start();			
+		}
 	}
 	
 	public void start() {		
