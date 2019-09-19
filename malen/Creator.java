@@ -51,13 +51,42 @@ public class Creator {
 		} else if (e.getKeyCode() == KeyEvent.VK_F) {
 			char c = 2;
 			create(x, y, c);
+		} else if (e.getKeyCode() == KeyEvent.VK_G) {
+			char c = 3;
+			create(x, y, c);
 		} else if (e.getKeyCode() == KeyEvent.VK_R) {
 			Gegner geg = new Gegner();
 			geg.initial(x, y, 0, 'r');
 			zeichnen.gegnerListe.add(geg);
+		} else if (e.getKeyCode() == KeyEvent.VK_T) {
+			Gegner geg = new Gegner();
+			geg.initial(x, y, 0, 'z');
+			zeichnen.gegnerListe.add(geg);
+		} else if (e.getKeyCode() == KeyEvent.VK_E) {
+			Gegner geg = new Gegner();
+			geg.initial(x, y, 1, 'z');
+			zeichnen.gegnerListe.add(geg);
+		} else if (e.getKeyCode() == KeyEvent.VK_U) {
+			Gegner geg = new Gegner();
+			geg.initial(x, y, 0, 'v');
+			zeichnen.gegnerListe.add(geg);
+		} else if (e.getKeyCode() == KeyEvent.VK_K) {
+			Gegner geg = new Gegner();
+			geg.initial(x, y, 1, 'v');
+			zeichnen.gegnerListe.add(geg);
+		} else if (e.getKeyCode() == KeyEvent.VK_J) {
+			Gegner geg = new Gegner();
+			geg.initial(x, y, 2, 'v');
+			zeichnen.gegnerListe.add(geg);
+		} else if (e.getKeyCode() == KeyEvent.VK_H) {
+			Gegner geg = new Gegner();
+			geg.initial(x, y, 3, 'v');
+			zeichnen.gegnerListe.add(geg);
 		} else if (e.getKeyCode() == KeyEvent.VK_Q) {
 			zeichnen.alleGegnerLoeschen();
 			zeichnen.gegnerListe = new LinkedList<Gegner>();
+		} else if (e.getKeyCode() == KeyEvent.VK_X) {
+			zeichnen.alleGegnerStarten();
 		}
 	}
 }

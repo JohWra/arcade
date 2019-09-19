@@ -55,10 +55,14 @@ extends Frame
 				} else if (Bloecke.zeile[i][j]=='S') {
 					Position.x=j;
 					Position.y=i;
+					char n = 0;
+					Bloecke.zeile[i][j]=n;
 				} else if (Bloecke.zeile[i][j]=='C') {
 					c = new Creator();
 					c.x=j;
 					c.y=i;
+					char n = 0;
+					Bloecke.zeile[i][j]=n;
 				}
 			}
 		}
@@ -70,7 +74,12 @@ extends Frame
 		}
 	}
 	
-	
+
+	public static void alleGegnerStarten() {
+		for(Gegner startG:gegnerListe) {
+			startG.start();		
+		}
+	}
 	
 	public zeichnen() 
 	{
@@ -137,7 +146,9 @@ extends Frame
             Position.rsZeichnen(g2d);
             Bloecke.erstellen(g2d);
             hintergrund(g2d);
-            c.rsZeichnen(g2d);
+            if(c != null) {
+                c.rsZeichnen(g2d);            	
+            }
             for (Gegner gegner: gegnerListe)
             {
             	gegner.gzeichnen(g);

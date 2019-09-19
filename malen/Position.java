@@ -31,6 +31,11 @@ public class Position implements KeyListener {
 			Bloecke.zeile[yp][xp] = 0;// Barriere loeschen
 			x = xp;// bewegen
 			y = yp;
+		} else if (Bloecke.zeile[yp][xp] == 3)// wenn Barriere
+		{
+			Bloecke.zeile[yp][xp] = 0;// Barriere loeschen
+			x = xp;// bewegen
+			y = yp;
 		} else if (Bloecke.zeile[yp][xp] == 'G')// wenn am Ziel
 		{
 			Bloecke.zeile[yp][xp] = 0;// Barriere loeschen
@@ -38,7 +43,7 @@ public class Position implements KeyListener {
 			y = yp;
 			nextLevel();
 		}
-		
+
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -57,14 +62,15 @@ public class Position implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_N) {
 			prevLevel();
 		} else {
-			if(zeichnen.c != null) {
-				zeichnen.c.keyPressed(e);				
+			if (zeichnen.c != null) {
+				zeichnen.c.keyPressed(e);
 			}
 		}
 	}
 
 	public void nextLevel() {
 		if (Bloecke.level < 3) {
+			zeichnen.c = null;
 			zeichnen.alleGegnerLoeschen();
 			zeichnen.gegnerListe = new LinkedList<Gegner>();
 			Bloecke.level += 1;
@@ -74,7 +80,8 @@ public class Position implements KeyListener {
 	}
 
 	public void prevLevel() {
-		if (Bloecke.level > 1) {
+		if (Bloecke.level > 0) {
+			zeichnen.c = null;
 			zeichnen.alleGegnerLoeschen();
 			zeichnen.gegnerListe = new LinkedList<Gegner>();
 			Bloecke.level -= 1;
@@ -86,12 +93,12 @@ public class Position implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
